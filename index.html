@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Podcast Pitch: White Lies</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { overflow-x: hidden; background-color: black; color: white; }
+
+    .fade-section { opacity: 0; transform: translateY(50px); transition: all 1.2s ease-out; position: relative; z-index: 2; }
+    .fade-section.visible { opacity: 1; transform: translateY(0); }
+    .icon-animate { transform: scale(0.8); transition: transform 1s ease-out; }
+    .fade-section.visible .icon-animate { transform: scale(1); }
+    .glow-title { text-shadow: 0 0 15px rgba(255,255,255,0.8), 0 0 30px rgba(255,255,255,0.5); animation: glowPulse 3s infinite alternate; }
+    @keyframes glowPulse { from { text-shadow: 0 0 15px rgba(255,255,255,0.8), 0 0 30px rgba(255,255,255,0.5); } to { text-shadow: 0 0 25px rgba(255,255,255,1), 0 0 50px rgba(255,255,255,0.7); } }
+    .letter-animate span { display: inline-block; opacity: 0; transform: translateY(40px); animation: letterFade 0.6s forwards; }
+    @keyframes letterFade { to { opacity: 1; transform: translateY(0); } }
+
+    .aurora { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 20% 20%, rgba(0,0,0,0.9), transparent 60%), radial-gradient(circle at 80% 30%, rgba(0,0,0,0.9), transparent 60%), radial-gradient(circle at 50% 80%, rgba(0,0,0,0.9), transparent 60%); background-repeat: no-repeat; filter: blur(80px); animation: auroraMove 15s infinite linear; z-index: 0; }
+    @keyframes auroraMove { 0% { transform: translate(0,0) scale(1); } 25% { transform: translate(-50px, 50px) scale(1.1); } 50% { transform: translate(50px, -50px) scale(1.05); } 75% { transform: translate(-30px, 30px) scale(1.08); } 100% { transform: translate(0,0) scale(1); } }
+
+    /* Modal styles */
+    .modal { display: none; position: fixed; z-index: 50; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.9); }
+    .modal-content { background-color: #111; margin: 10% auto; padding: 20px; border: 1px solid #888; width: 90%; max-width: 600px; border-radius: 12px; }
+    .close { color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
+    .close:hover { color: white; }
+  </style>
+</head>
+<body class="font-sans">
+
+  <!-- Title Section -->
+  <section class="h-screen flex flex-col justify-center items-center text-center relative z-10">
+    <h1 id="title-text" class="text-6xl font-extrabold mb-4 glow-title"></h1>
+    <p class="text-2xl text-gray-600 max-w-xl">An NPR investigative podcast uncovering hidden truths of the civil rights movement.</p>
+    <div class="mt-8">
+      <a href="#about" class="bg-black text-white px-8 py-4 rounded-full shadow-lg hover:bg-gray-800 transition">Learn More</a>
+    </div>
+  </section>
+
+  <!-- Aurora background -->
+  <div class="aurora"></div>
+
+  <!-- About Section -->
+  <section id="about" class="py-20 px-6 md:px-16 fade-section relative z-10">
+    <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+      <div>
+        <h2 class="text-4xl font-bold mb-6">What It's About</h2>
+        <p class="mb-4">White Lies is an NPR investigative podcast that revisits the 1965 murder of Rev. James Reeb, exposing cover-ups and hidden truths.</p>
+        <button onclick="openModal('modalAbout')" class="bg-white text-black px-6 py-2 rounded-full shadow hover:bg-gray-200 transition">Read More</button>
+      </div>
+      <div class="flex justify-center">
+        <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f50d.svg" alt="Investigation Clipart" class="w-32 h-32 icon-animate">
+      </div>
+    </div>
+  </section>
+
+  <div id="modalAbout" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('modalAbout')">&times;</span>
+      <p><em>White Lies</em> is an NPR investigative podcast that revisits the 1965 murder of Rev. James Reeb, a minister who traveled to Selma, Alabama, during the civil rights movement. The series exposes cover-ups, hidden truths, and the legacy of racism in America, piecing together why the case was left unsolved for decades.</p>
+    </div>
+  </div>
+
+  <!-- Why I Chose It -->
+  <section class="py-20 px-6 md:px-16 fade-section relative z-10">
+    <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+      <div class="flex justify-center order-2 md:order-1">
+        <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f4d6.svg" alt="Book Clipart" class="w-32 h-32 icon-animate">
+      </div>
+      <div class="order-1 md:order-2">
+        <h2 class="text-4xl font-bold mb-6">Why I Chose It</h2>
+        <p class="mb-4">I chose this podcast because it blends storytelling with real history, showing how past events connect to present issues.</p>
+        <button onclick="openModal('modalWhyIChose')" class="bg-white text-black px-6 py-2 rounded-full shadow hover:bg-gray-200 transition">Read More</button>
+      </div>
+    </div>
+  </section>
+
+  <div id="modalWhyIChose" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('modalWhyIChose')">&times;</span>
+      <p>I chose this podcast because it blends powerful storytelling with real history. It makes you feel the emotional weight of injustice and shows how events from the past connect to issues we still face today. It’s meaningful, thought-provoking, and the kind of story that sticks with you.</p>
+    </div>
+  </div>
+
+  <!-- Why You Should Listen -->
+  <section class="py-20 px-6 md:px-16 fade-section relative z-10">
+    <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+      <div>
+        <h2 class="text-4xl font-bold mb-6">Why You Should Listen</h2>
+        <p class="mb-4">This podcast feels like a true-crime mystery, except it’s real history. Every episode keeps you hooked while teaching you about the civil rights movement.</p>
+        <button onclick="openModal('modalWhyListen')" class="bg-white text-black px-6 py-2 rounded-full shadow hover:bg-gray-200 transition">Read More</button>
+      </div>
+      <div class="flex justify-center">
+        <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f3a4.svg" alt="Podcast Clipart" class="w-32 h-32 icon-animate">
+      </div>
+    </div>
+  </section>
+
+  <div id="modalWhyListen" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('modalWhyListen')">&times;</span>
+      <p>This podcast pulls you in with suspense and emotion while teaching you about the civil rights movement. Every episode keeps you hooked, and you walk away with a story that challenges how you think about justice and truth.</p>
+    </div>
+  </div>
+
+  <!-- Call to Action -->
+  <section class="py-20 px-6 md:px-16 text-center fade-section relative z-10">
+    <h2 class="text-5xl font-extrabold mb-6">LISTEN TO WHITE LIESSS!!!</h2>
+    <p class="text-xl mb-8">pls listen to white lies 🙏</p>
+    <a href="https://www.npr.org/podcasts/510343/white-lies" target="_blank" class="bg-white text-black px-10 py-4 rounded-full shadow-lg hover:bg-gray-200 transition">Listen Here</a>
+    <p class="mt-10 text-gray-400">passion project podcast by Divya Panda</p>
+  </section>
+
+  <script>
+    const faders = document.querySelectorAll('.fade-section');
+    const appearOptions = { threshold: 0.2, rootMargin: "0px 0px -50px 0px" };
+
+    const appearOnScroll = new IntersectionObserver(function(entries) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        } else {
+          entry.target.classList.remove('visible');
+        }
+      });
+    }, appearOptions);
+
+    faders.forEach(fader => appearOnScroll.observe(fader));
+
+    const titleText = "White Lies";
+    const titleElement = document.getElementById("title-text");
+    titleText.split("").forEach((char, i) => {
+      const span = document.createElement("span");
+      span.textContent = char;
+      span.style.animationDelay = `${i * 0.15}s`;
+      titleElement.appendChild(span);
+    });
+    titleElement.classList.add("letter-animate");
+
+    function openModal(id) { document.getElementById(id).style.display = 'block'; }
+    function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+  </script>
+
+</body>
+</html>
